@@ -14,10 +14,10 @@ import service.TaskService;
 
 public class Main {
     public static TaskService taskService = new TaskService();
-    private static final Pattern DATE_TIME_PATTERN = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}");
-    private static final Pattern DATE_PATTERN = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final Pattern DATE_TIME_PATTERN = Pattern.compile("\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}");
+    private static final Pattern DATE_PATTERN = Pattern.compile("\\d{2}-\\d{2}-\\d{4}");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static void main(String[] args) {
 
@@ -47,7 +47,7 @@ public class Main {
                 }
             }
         } catch (IncorrectArgumentException e) {
-            throw new RuntimeException(e);
+             System.out.println(e.getMessage());
         }
     }
 
@@ -62,7 +62,9 @@ public class Main {
 
         System.out.print("Введите тип задачи 1- личная, 2- рабочая: ");
         Type type = null;
+
         int typeChoice = scanner.nextInt();
+
         if (typeChoice == 1) {
             type = Type.PERSONAL;
         } else if (typeChoice == 2) {
@@ -72,13 +74,13 @@ public class Main {
             scanner.close();
         }
 
-        System.out.print("Введите дату и время в формате dd.MM.yyyy HH:mm ");
+        System.out.print("Введите дату и время в формате dd-MM-yyyy HH:mm ");
         LocalDateTime taskTime = null;
         if (scanner.hasNext(DATE_TIME_PATTERN)) {
             String dateTime = scanner.next(DATE_TIME_PATTERN);
             taskTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
         } else {
-            System.out.print("Введите дату и время в формате dd.MM.yyyy HH:mm ");
+            System.out.print("Введите дату и время в формате dd-MM-yyyy HH:mm ");
             scanner.close();
         }
 
@@ -127,7 +129,7 @@ public class Main {
 
     private static void printTaskByDay(Scanner scanner) {
 
-        System.out.print("Введите дату  dd.MM.yyyy для получения задачи: ");
+        System.out.print("Введите дату  dd-MM-yyyy для получения задачи: ");
 
         if (scanner.hasNext(DATE_PATTERN)) {
             String dateTime = scanner.next(DATE_PATTERN);
@@ -139,7 +141,7 @@ public class Main {
             }
 
         } else {
-            System.out.print("Введите дату в формате dd.MM.yyyy ");
+            System.out.print("Введите дату в формате dd-MM-yyyy ");
             scanner.close();
         }
     }

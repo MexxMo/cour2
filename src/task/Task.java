@@ -12,7 +12,7 @@ public abstract class Task implements Repeatable {
     private String title;
     private final Type type;
     private final int id;
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     private String description;
 
     public Task(String title, String description, Type type, LocalDateTime dateTime) throws IncorrectArgumentException {
@@ -52,9 +52,6 @@ public abstract class Task implements Repeatable {
         }
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
 
     public void setDescription(String description) throws IncorrectArgumentException {
         if (description == null || description.isEmpty() || description.isBlank()) {
@@ -66,11 +63,11 @@ public abstract class Task implements Repeatable {
 
     @Override
     public String toString() {
-        return "id " + id +
-                ", Название " + title +
-                ", Тип " + type +
-                ", Время " + dateTime +
-                ", Описание " + description;
+        return "id- " + id +",\n"+
+                "Название- " + title +",\n"+
+                "Тип задачи- " + type +",\n"+
+                "Время- " + dateTime +",\n"+
+                "Описание- " + description;
     }
 
     @Override

@@ -2,7 +2,7 @@ package task;
 
 import exception.IncorrectArgumentException;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 
 public class MonthlyTask extends Task {

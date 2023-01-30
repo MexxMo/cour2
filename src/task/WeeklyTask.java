@@ -1,8 +1,6 @@
 package task;
 
 import exception.IncorrectArgumentException;
-
-
 import java.time.LocalDateTime;
 
 public class WeeklyTask extends Task {
