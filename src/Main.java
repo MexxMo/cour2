@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -47,7 +46,7 @@ public class Main {
                 }
             }
         } catch (IncorrectArgumentException e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -61,7 +60,7 @@ public class Main {
         String description = scanner.next();
 
         System.out.print("Введите тип задачи 1- личная, 2- рабочая: ");
-        Type type = null;
+        Type type;
 
         int typeChoice = scanner.nextInt();
 
@@ -71,17 +70,17 @@ public class Main {
             type = Type.WORK;
         } else {
             System.out.println("Ошибка--> Выберите тип задачи: ");
-            scanner.close();
+            return;
         }
 
         System.out.print("Введите дату и время в формате dd-MM-yyyy HH:mm ");
-        LocalDateTime taskTime = null;
+        LocalDateTime taskTime;
         if (scanner.hasNext(DATE_TIME_PATTERN)) {
             String dateTime = scanner.next(DATE_TIME_PATTERN);
             taskTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
         } else {
             System.out.print("Введите дату и время в формате dd-MM-yyyy HH:mm ");
-            scanner.close();
+            return;
         }
 
 
@@ -142,7 +141,7 @@ public class Main {
 
         } else {
             System.out.print("Введите дату в формате dd-MM-yyyy ");
-            scanner.close();
+
         }
     }
 
